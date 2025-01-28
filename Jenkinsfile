@@ -1,5 +1,10 @@
 pipeline {
-    agent docker-golang-agent
+    agent {
+        docker {
+            image 'golang:1.22' // Use the official Golang Docker image
+            args '-v /var/run/docker.sock:/var/run/docker.sock' // Mount Docker socket for Docker commands
+        }
+    }
 
     environment {
         DOCKER_IMAGE = 'todo-cli'
