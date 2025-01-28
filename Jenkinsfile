@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent docker-golang-agent
 
     environment {
         DOCKER_IMAGE = 'todo-cli'
@@ -9,11 +9,6 @@ pipeline {
         stage('Install pre-requisite'){
             steps{
                 script {
-                    sh 'sudo apt update'
-                    sh 'sudo apt install wget'
-                    sh 'wget https://go.dev/dl/go1.23.5.linux-amd64.tar.gz'
-                    sh 'rm -rf /usr/local/go && tar -C /usr/local -xzf go1.23.5.linux-amd64.tar.gz'
-                    sh 'export PATH=$PATH:/usr/local/go/bin'
                     sh ' go version'
                 }
             }
